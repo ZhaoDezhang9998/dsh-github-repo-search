@@ -1,5 +1,7 @@
 # dsh-github-repo-search
 
+[![Open Plugin Market](https://img.shields.io/endpoint?url=https%3A%2F%2Fdshopen.org%2Fbadge%2Fdsh-github-repo-search.json%3Flang%3Den)](https://dshopen.org/plugins/dsh-github-repo-search/)
+
 给 DeepSeek Harness 加一组 GitHub 仓库检索工具。你说「去 GitHub 上搜一下 SVG 编辑器，按 star 排序」，模型直接调工具拿结果，不用你手动开浏览器。
 
 ## 工具
@@ -14,7 +16,11 @@
 
 ## 安装
 
-安装：在 DSH 里 **Plugins → 添加插件** 选择本目录，或 `dsh plugin --profile <name> add dsh-github-repo-search`。装完在新会话里试：
+```bash
+dsh plugin --profile <你的 profile> add dsh-github-repo-search
+```
+
+也可以在 DSH 里 **Plugins → 添加插件** 选择本目录（本地目录安装）。装完在新会话里试：
 
 > 去 GitHub 上搜一下 SVG 编辑器，按 star 排序
 

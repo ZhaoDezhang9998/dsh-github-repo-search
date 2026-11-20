@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "GitHub 仓库检索",
+    "description": "给智能体加三个工具：github_search_repos 按关键词检索 GitHub 仓库（星标、语言、许可证、最近推送、简介、链接），github_repo 看单个仓库详情并读 README，github_rate 查当前 API 配额。用法举例：直接说「去 GitHub 上搜一下 SVG 编辑器，按 star 排序」，模型会调用 github_search_repos；想细看某个仓库再说一句就能用 github_repo 展开。每次调用都直接访问 GitHub REST API，不经过 DSH 账号，返回内容按外部数据处理；插件自身不带命令和界面。匿名配额 60 次/小时（按 IP，其中搜索接口 10 次/小时），在启动 DSH 的环境里设置 GITHUB_TOKEN 可提到 5000 次/小时。搜索只匹配仓库名、描述和 topics，中文关键词命中率低，用英文或项目原名更容易搜到。停用该插件包后三个工具立即消失。",
+    "detail": "docs/DETAIL.zh.md"
+  }
+}

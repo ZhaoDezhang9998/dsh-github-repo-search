@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "GitHub repository search",
+    "description": "Adds three agent tools that search GitHub repositories, read one repository in detail (including its README), and report the current API quota. Use github_search_repos with keywords such as \"svg editor\" to find projects, then github_repo to inspect the chosen one. Each call goes to the GitHub REST API over the network without going through your DSH account; results are returned as external data, and the plugin registers no commands or UI of its own. Search matches repository names, descriptions and topics only, so English or exact project names work best. Anonymous requests are limited to 60 per hour per IP; set GITHUB_TOKEN in the environment that starts DSH for 5000 per hour. Disabling the bundle removes all three tools immediately.",
+    "detail": "docs/DETAIL.md"
+  }
+}

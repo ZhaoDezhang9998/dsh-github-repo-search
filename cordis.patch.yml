@@ -1,0 +1,18 @@
+# dsh-github-repo-search bundle patch
+#
+# GitHub 仓库检索：三个 Host 工具（github_search_repos / github_repo / github_rate）。
+# token 不写在这里：插件每次请求时从 DSH 密钥库读取（refs.GITHUB_TOKEN / GH_TOKEN /
+# DSH_GITHUB_TOKEN），密钥库没有时才回落到进程环境变量。匿名也能用，配额 60 次/小时。
+#
+# apiBase 可改成 GitHub Enterprise 地址；只有 github.com / api.github.com 和 trustedHosts
+# 里列出的主机会收到 token，其余地址一律按匿名请求，避免凭据被送到第三方。
+- insert:
+    - id: github-search
+      name: dsh-github-repo-search
+      inject: [tools, systemPrompt]
+      config:
+        apiBase: https://api.github.com
+        maxResults: 10
+        maxReadmeChars: 8000
+        timeoutMs: 20000
+        trustedHosts: []

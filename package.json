@@ -1,0 +1,48 @@
+{
+  "name": "dsh-github-repo-search",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DeepSeek Harness plugin: three agent tools to search GitHub repositories, read one repository in detail with its README, and check the API quota.",
+  "license": "MIT",
+  "author": "ZhaoDezhang9998",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "github",
+    "github-search",
+    "repository-search",
+    "agent-tools"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZhaoDezhang9998/dsh-github-repo-search.git"
+  },
+  "homepage": "https://github.com/ZhaoDezhang9998/dsh-github-repo-search#readme",
+  "bugs": {
+    "url": "https://github.com/ZhaoDezhang9998/dsh-github-repo-search/issues"
+  },
+  "engines": {
+    "dsh": ">=0.2.1-rc.2 <0.3.0-0",
+    "node": ">=20"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

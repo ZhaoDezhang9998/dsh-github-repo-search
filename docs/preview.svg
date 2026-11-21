@@ -1,37 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif">
   <defs>
-    <clipPath id="ghsCardClip">
-      <rect x="300" y="54" width="300" height="192" rx="14"/>
-    </clipPath>
+    <clipPath id="panelClip"><rect x="292" y="20" width="448" height="400" rx="12"/></clipPath>
   </defs>
-  <rect width="640" height="300" fill="#f6f8fa"/>
-  <g opacity="0.9">
-    <circle cx="120" cy="140" r="58" fill="#eaeef2"/>
-    <circle cx="112" cy="132" r="38" fill="none" stroke="#24292f" stroke-width="9"/>
-    <path d="M139 159 L172 192" stroke="#24292f" stroke-width="13" stroke-linecap="round"/>
-    <path d="M96 120h32M96 132h32M96 144h20" stroke="#8c959f" stroke-width="5" stroke-linecap="round"/>
+  <rect width="760" height="440" fill="#f6f8fa"/>
+
+  <!-- 左：对话 -->
+  <g>
+    <rect x="20" y="36" width="248" height="32" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="34" y="57" font-size="12" fill="#57606a">搜一下漫剧相关的开源项目，按 star 排序</text>
+
+    <rect x="20" y="80" width="248" height="46" rx="10" fill="#eaeef2"/>
+    <text x="34" y="99" font-size="11" fill="#57606a">已调用 github_search_repos</text>
+    <text x="34" y="116" font-size="11" fill="#8c959f">manju · 共 6964 个结果</text>
+
+    <rect x="20" y="138" width="248" height="32" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="34" y="159" font-size="12" fill="#57606a">第二个看着不错，读下 README</text>
   </g>
-  <rect x="300" y="54" width="300" height="192" rx="14" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
-  <g clip-path="url(#ghsCardClip)">
-    <g>
-      <circle cx="330" cy="88" r="11" fill="#57606a"/>
-      <rect x="354" y="78" width="150" height="9" rx="4.5" fill="#57606a"/>
-      <rect x="354" y="93" width="96" height="7" rx="3.5" fill="#d0d7de"/>
-      <path d="M544 81l4.2 8.6 9.4 1.4-6.8 6.6 1.6 9.4-8.4-4.4-8.4 4.4 1.6-9.4-6.8-6.6 9.4-1.4z" fill="#bf8700"/>
-    </g>
-    <g>
-      <circle cx="330" cy="140" r="11" fill="#8250df"/>
-      <rect x="354" y="130" width="132" height="9" rx="4.5" fill="#57606a"/>
-      <rect x="354" y="145" width="112" height="7" rx="3.5" fill="#d0d7de"/>
-      <path d="M544 133l4.2 8.6 9.4 1.4-6.8 6.6 1.6 9.4-8.4-4.4-8.4 4.4 1.6-9.4-6.8-6.6 9.4-1.4z" fill="#bf8700"/>
-    </g>
-    <g>
-      <circle cx="330" cy="192" r="11" fill="#1a7f37"/>
-      <rect x="354" y="182" width="158" height="9" rx="4.5" fill="#57606a"/>
-      <rect x="354" y="197" width="88" height="7" rx="3.5" fill="#d0d7de"/>
-      <path d="M544 185l4.2 8.6 9.4 1.4-6.8 6.6 1.6 9.4-8.4-4.4-8.4 4.4 1.6-9.4-6.8-6.6 9.4-1.4z" fill="#d4a72c"/>
-    </g>
+
+  <!-- 右：面板 -->
+  <rect x="292" y="20" width="448" height="400" rx="12" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <g clip-path="url(#panelClip)">
+    <!-- 头部 -->
+    <text x="310" y="48" font-size="13" font-weight="600" fill="#1f2328">GitHub</text>
+    <text x="628" y="48" font-size="11" fill="#8c959f">配额 29/30</text>
+
+    <!-- 标签 -->
+    <rect x="306" y="60" width="58" height="24" rx="6" fill="#eaeef2"/>
+    <text x="316" y="76" font-size="12" font-weight="600" fill="#1f2328">仓库 20</text>
+    <text x="375" y="76" font-size="12" fill="#8c959f">代码 5</text>
+    <text x="432" y="76" font-size="12" fill="#8c959f">议题 6</text>
+    <text x="489" y="76" font-size="12" fill="#8c959f">收藏</text>
+    <text x="539" y="76" font-size="12" fill="#8c959f">对比</text>
+
+    <!-- 排序 -->
+    <text x="310" y="102" font-size="11" fill="#8c959f">排序</text>
+    <rect x="342" y="90" width="34" height="16" rx="4" fill="#eaeef2"/>
+    <text x="350" y="102" font-size="11" fill="#1f2328">星标</text>
+    <text x="386" y="102" font-size="11" fill="#8c959f">最近</text>
+    <text x="424" y="102" font-size="11" fill="#8c959f">名称</text>
+
+    <!-- 分组 -->
+    <text x="310" y="126" font-size="12.5" font-weight="600" fill="#1f2328">manju</text>
+    <text x="614" y="126" font-size="10.5" fill="#8c959f">6964 个 · 显示 8</text>
+
+    <!-- 卡片 1 -->
+    <rect x="306" y="136" width="420" height="66" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="318" y="154" font-size="12" font-weight="600" fill="#1f2328">UnderleveledBuilder/awesome-short-drama-skills</text>
+    <path d="M614 146l2.6 5.2 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" fill="#bf8700"/>
+    <text x="626" y="154" font-size="11" font-weight="600" fill="#bf8700">2.7k</text>
+    <rect x="318" y="162" width="36" height="15" rx="4" fill="#f6f8fa"/><text x="325" y="173" font-size="10" fill="#57606a">HTML</text>
+    <rect x="358" y="162" width="56" height="15" rx="4" fill="#f6f8fa"/><text x="365" y="173" font-size="10" fill="#57606a">CC0-1.0</text>
+    <rect x="418" y="162" width="66" height="15" rx="4" fill="#f6f8fa"/><text x="425" y="173" font-size="10" fill="#8c959f">2026-11-19</text>
+    <text x="318" y="193" font-size="10.5" fill="#57606a">AI 短剧 · 漫剧 Skill 精选：剧本、改编、分镜、视频提示词</text>
+
+    <!-- 卡片 2（选中） -->
+    <rect x="306" y="210" width="420" height="66" rx="8" fill="#eef3f8" stroke="#8c959f"/>
+    <text x="318" y="228" font-size="12" font-weight="600" fill="#1f2328">lixiaoxiao9888-create/manju-laoli-skill</text>
+    <path d="M614 220l2.6 5.2 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" fill="#bf8700"/>
+    <text x="626" y="228" font-size="11" font-weight="600" fill="#bf8700">2.2k</text>
+    <rect x="318" y="236" width="48" height="15" rx="4" fill="#ffffff"/><text x="325" y="247" font-size="10" fill="#57606a">Python</text>
+    <rect x="370" y="236" width="34" height="15" rx="4" fill="#ffffff"/><text x="377" y="247" font-size="10" fill="#57606a">MIT</text>
+    <rect x="408" y="236" width="66" height="15" rx="4" fill="#ffffff"/><text x="415" y="247" font-size="10" fill="#8c959f">2026-11-19</text>
+    <text x="318" y="267" font-size="10.5" fill="#57606a">漫剧老李 AIGC 创作全流程 Skill · 1 总控 + 12 子技能</text>
+
+    <!-- 展开详情 -->
+    <rect x="306" y="282" width="420" height="124" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+    <text x="318" y="302" font-size="10.5" fill="#8c959f">语言</text>
+    <text x="356" y="302" font-size="10.5" fill="#57606a">Python 100%</text>
+    <text x="318" y="320" font-size="10.5" fill="#8c959f">Release</text>
+    <text x="366" y="320" font-size="10.5" fill="#57606a">v6.9.8（2026-09-20）</text>
+    <rect x="318" y="330" width="396" height="64" rx="6" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="328" y="346" font-size="10" fill="#8c959f" font-family="ui-monospace, Menlo, monospace"># 漫剧老李 AIGC 创作全流程 Skill</text>
+    <text x="328" y="362" font-size="10" fill="#afb8c1" font-family="ui-monospace, Menlo, monospace">V7.5.0-SLIM 精简套装版 · Short-Drama Director Suite</text>
+    <text x="328" y="378" font-size="10" fill="#afb8c1" font-family="ui-monospace, Menlo, monospace">1 总控 + 10 子技能 · 四层纵深架构</text>
   </g>
-  <path d="M212 140h72" stroke="#8c959f" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 14"/>
-  <path d="M272 128l16 12-16 12" fill="none" stroke="#8c959f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

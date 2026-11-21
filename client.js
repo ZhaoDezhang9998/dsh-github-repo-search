@@ -29,7 +29,7 @@ window.__ModuleLoader__.load({
 
     /** 读取本地偏好；storage 不可用或数据损坏时回落到默认值。 */
     function readStore() {
-      const empty = { starred: [], tab: 'repos', sort: 'default', compare: [] }
+      const empty = { starred: [], tab: 'repos', sort: 'default', compare: [], history: [] }
       if (typeof localStorage === 'undefined') return empty
       try {
         const raw = localStorage.getItem(STORE_KEY)
@@ -41,6 +41,7 @@ window.__ModuleLoader__.load({
           tab: typeof parsed.tab === 'string' ? parsed.tab : 'repos',
           sort: typeof parsed.sort === 'string' ? parsed.sort : 'default',
           compare: Array.isArray(parsed.compare) ? parsed.compare.filter(x => typeof x === 'string') : [],
+          history: Array.isArray(parsed.history) ? parsed.history.filter(x => x && typeof x.query === 'string') : [],
         }
       } catch {
         return empty
@@ -706,6 +707,7 @@ window.__ModuleLoader__.load({
       const [compare, setCompare] = useState(initial.compare)
       const [tab, setTab] = useState(initial.tab)
       const [sort, setSort] = useState(initial.sort)
+      const [history, setHistory] = useState(initial.history)
 
       // 任何偏好变化都写回本地，下次打开面板保持原样。
       const persist = useCallback((patch) => {
@@ -772,6 +774,30 @@ window.__ModuleLoader__.load({
         [compare, allRepos],
       )
 
+      // 把会话里出现过的检索记进本地历史，跨会话可回查。
+      React.useEffect(() => {
+        const known = new Set(history.map(item => `${item.kind}:${item.query}`))
+        const fresh = []
+        for (const group of queries) {
+          const key = `repo:${group.query}`
+          if (!known.has(key)) fresh.push({ kind: 'repo', query: group.query, total: group.total, at: group.at, repos: (group.repos || []).slice(0, 20) })
+        }
+        for (const group of codeSearches) {
+          const key = `code:${group.query}`
+          if (!known.has(key)) fresh.push({ kind: 'code', query: group.query, total: group.total, at: group.at })
+        }
+        for (const group of issueSearches) {
+          const key = `issues:${group.query}`
+          if (!known.has(key)) fresh.push({ kind: 'issues', query: group.query, total: group.total, at: group.at })
+        }
+        if (fresh.length === 0) return
+        setHistory((current) => {
+          const next = [...fresh, ...current].slice(0, 40)
+          persist({ history: next })
+          return next
+        })
+      }, [queries, codeSearches, issueSearches])
+
       const repoCount = queries.reduce((n, g) => n + (Array.isArray(g.repos) ? g.repos.length : 0), 0)
       const codeCount = codeSearches.reduce((n, g) => n + (Array.isArray(g.hits) ? g.hits.length : 0), 0)
       const issueCount = issueSearches.reduce((n, g) => n + (Array.isArray(g.issues) ? g.issues.length : 0), 0)
@@ -832,6 +858,43 @@ window.__ModuleLoader__.load({
           onRemove: (name) => { toggleCompare(name) },
           onClear: () => { setCompare([]); persist({ compare: [] }) },
         })
+      } else if (tab === 'history') {
+        content = history.length === 0
+          ? tabEmpty('历史：还是空的', '检索过的关键词会自动记在这里，跨会话保留。')
+          : h('div', { style: css.group },
+              h(GroupHead, { query: '全部检索记录', meta: `${history.length} 条` }),
+              history.map((item, index) => {
+                const label = item.kind === 'repo' ? '仓库' : item.kind === 'code' ? '代码' : '议题'
+                const when = item.at ? new Date(item.at).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''
+                return h('div', {
+                  key: `${item.kind}:${item.query}:${index}`,
+                  style: css.row,
+                  role: 'button',
+                  tabIndex: 0,
+                  onClick: () => { selectTab(item.kind === 'repo' ? 'repos' : item.kind === 'code' ? 'code' : 'issues') },
+                },
+                  h('div', { style: { display: 'flex', alignItems: 'baseline', gap: 6, minWidth: 0 } },
+                    h('span', {
+                      style: {
+                        flex: 'none', fontSize: 10, padding: '0 5px', lineHeight: 1.6,
+                        borderRadius: 'var(--dsw-radius-xs)',
+                        background: 'var(--dsw-alias-bg-layer-2)',
+                        color: 'var(--dsw-alias-label-secondary)',
+                      },
+                    }, label),
+                    h('span', {
+                      style: {
+                        fontSize: 12, fontWeight: 600, color: 'var(--dsw-alias-label-primary)',
+                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      },
+                      title: item.query,
+                    }, item.query),
+                  ),
+                  h('div', { style: { fontSize: 10.5, color: 'var(--dsw-alias-label-tertiary)', marginTop: 2 } },
+                    `${item.total ?? 0} 个结果${when ? ` · ${when}` : ''}`),
+                )
+              }),
+            )
       } else if (nothing) {
         content = h('div', { style: css.empty },
           h('svg', {
@@ -902,6 +965,7 @@ window.__ModuleLoader__.load({
           h(TabButton, { active: tab === 'issues', label: '议题', count: issueCount, onClick: () => { selectTab('issues') } }),
           h(TabButton, { active: tab === 'starred', label: '收藏', count: starred.length, onClick: () => { selectTab('starred') } }),
           h(TabButton, { active: tab === 'compare', label: '对比', count: compare.length, onClick: () => { selectTab('compare') } }),
+          h(TabButton, { active: tab === 'history', label: '历史', count: history.length, onClick: () => { selectTab('history') } }),
         ),
         showSort
           ? h('div', { style: css.sortRow },

@@ -1,6 +1,6 @@
 {
   "name": "dsh-github-repo-search",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "type": "module",
   "description": "DeepSeek Harness plugin: search GitHub repositories, code, issues and trends from chat, then revisit, star, compare and keep a cross-session history of what you searched in a right-sidebar panel.",
   "license": "MIT",

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "GitHub 检索",
-    "description": "让智能体直接检索 GitHub：仓库、代码、issue 与近期趋势，六个工具，结果在右侧栏成面板可回看、可收藏、可并排对比。用法举例：「搜一下 SVG 编辑器按 star 排序」「这个库里 useProjection 怎么实现的」「这个项目还有哪些没关的 bug」——模型会自己选对应工具。面板按仓库／代码／议题分标签，卡片可展开语言构成、最新 Release 与 README，支持星标收藏（跨会话保留）和 2–3 个候选并排比较。每次调用直连 GitHub REST API，不经过 DSH 账号；返回内容按外部数据处理，不作为指令。匿名配额 60 次/小时且代码搜索必须登录，建议在 DSH 密钥库里存一个 GITHUB_TOKEN（5000 次/小时）；token 只发往 github.com／api.github.com 以及你显式列入 trustedHosts 的主机。插件没有自己的命令，停用后六个工具立即消失。",
+    "description": "让智能体直接检索 GitHub：仓库、代码、issue 与近期趋势，六个工具，结果在右侧栏成面板可回看、可收藏、可并排对比。用法举例：「搜一下 SVG 编辑器按 star 排序」「这个库里 useProjection 怎么实现的」「这个项目还有哪些没关的 bug」——模型会自己选对应工具。面板按仓库／代码／议题分标签，卡片可展开语言构成、最新 Release 与 README，支持星标收藏（跨会话保留）、2–3 个候选并排比较，以及检索历史存档。每次调用直连 GitHub REST API，不经过 DSH 账号；返回内容按外部数据处理，不作为指令。匿名配额 60 次/小时且代码搜索必须登录，建议在 DSH 密钥库里存一个 GITHUB_TOKEN（5000 次/小时）；token 只发往 github.com／api.github.com 以及你显式列入 trustedHosts 的主机。插件没有自己的命令，停用后六个工具立即消失。",
     "detail": "docs/DETAIL.zh.md"
   }
 }
